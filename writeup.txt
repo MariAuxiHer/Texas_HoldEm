@@ -1,0 +1,59 @@
+/********************************************************************************************************************************************************
+    Maria Hernandez 
+    Casey Collins
+    COSC202
+    12/09/2022
+    writeup.txt
+***********************************************************************************************************************************************************/
+
+What did we learn? 
+
+-	We learned that some tasks have a lot of details to account for and even though it may seem like an easy concept sometimes it can take 
+    a lot of code and accounting for how different scenarios affect the rest of the code you have already written. 
+    This takes time and careful consideration to account for. Much more than we initially expected when getting started. 
+    There are also several different variations of Texas that we came across, so we had to somewhat differentiate and pick between them.
+-	We learned to maximize the advantages of both maps and vectors. With the maps we were able to give a value to each one of the 52 cards. 
+    On the other hand, using vectors allowed us to easily shuffle the card deck and to access specific indexes of the vector in the functions 
+    that calculate the hand rankings. 
+
+What went well? 
+
+-	Both of us were able to write a combined several thousand lines of code with multiple approaches to many of the functions and we picked 
+    the approaches that worked well while keeping the needs of the rest of function in mind.
+-	Use maps to set the value for each key, each key being each of the 52 cards (suit + value… AH, AS,…). 
+    This value is used to sort the hands of each player, so that we can know if the cards are in sequence (difference between (card at (i + 1) – card (i) = 1 
+    (when they are sorted)), or if they are the same (card at (i + 1) – card (i) = 0 (when they are sorted)). 
+-	Correctly calculating the pot for each betting round, and currently subtracting the player’s chips each time they place a bet. 
+-	Correctly calculating the positions of each player. Small blind in the Preflop, is at the left of the dealer and big blind is at the 
+    left of small blind. Then, after distributing the blinds, the first person to act is the person on the left of the big blind. 
+-	The game accounts for the scenario when the dealer is at the last index of the vector, placing the small blind at index 0. 
+-	The game accounts for folding. If all but one player folds, that player is the winner. 
+-	The game correctly calculates the highest hand each player can get with their 2 cards + the 5 community cards. 
+
+What went less well?
+
+-	We believe the game is correctly calculating the hand rankings. However, if 2 or more players get the same hand ranking 
+    (Example: if two of them get three of a kind), it won’t tell which player has the highest hand. 
+    If all players get different hand rankings, the game correctly gives the winner. 
+-	It only accounts for 1 hand. As soon as the game reaches the showdown and every person shows their card, the game ends.
+-	This won’t compile when using C++17 because of the random_shuffle() function. We hadn’t realized that 
+    std::random_shuffle was deprecated in C++14 and removed in C++17. Thus, to compile the game, we need to compile it in C++11. 
+-	We are not yet accounting for the scenarios when players run out of chips. 
+-	We could have used templates for the function sortHands() and sortPoints(), but we did not initialize thought about it. 
+-	We struggled combining our different versions of code. We should have decided before writing all the code what function needed as 
+    input and output and each worked on separate individual functions to meet those requirements and then had main guide the game and 
+    implement the functions in accordance with the rule of the game where necessary. In the current version, 
+    we need to add more catches for edge conditions such as player input. Checking the input data type etc. 
+    Also, we didn't add a functionality for players being eliminated from the game once they run out of chips. 
+
+
+Full discretionary points justification: 
+
+-	We were told this lab was larger than what was expected of us, but we wanted to challenge ourselves. 
+    We use two data structures disucssed in 202, maps and vectors. We set up functional classes with many different working member function. 
+    There are roughly 500 lines of code in multiple files that complies without warnings or errors and has most of the functionality of 
+    Texas Hold’em. Texas Hold’em is a game that has many different small rules that must be accounted for which makes it a very complex game. 
+    A lot of the functions we made had to account for not breaking the game while adjusting variable and values that the other functions 
+    depended on. Each function was made with awareness of how it will affect all the other functions of the game. 
+    We tested several different scenarios (different number of players, different selections in each round, all player folding except one, 
+    the dealer folding, etc), and it appears to be working very decently. 
